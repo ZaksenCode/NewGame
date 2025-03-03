@@ -39,8 +39,8 @@ class NewGame : Game() {
     }
 
     override fun resize(width: Int, height: Int) {
-        viewport.update(width, height)
         super.resize(width, height)
+        viewport.update(width, height)
     }
 
     override fun render() {
