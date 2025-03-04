@@ -25,8 +25,8 @@ class MenuScreen(
         assetManager.get("monocraft.ttc", BitmapFont::class.java).draw(
             batch,
             "New game!",
-            100f,
-            Gdx.app.graphics.height - 100f
+            Gdx.app.graphics.width / 2f,
+            Gdx.app.graphics.height / 2f
         )
     }
 

@@ -1,7 +1,6 @@
 package me.zaksen
 
 import com.badlogic.gdx.Game
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
@@ -12,9 +11,9 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoaderParameter
-import com.badlogic.gdx.utils.viewport.FitViewport
+import com.badlogic.gdx.utils.Scaling
+import com.badlogic.gdx.utils.viewport.ExtendViewport
 import me.zaksen.screen.LoadingScreen
-
 
 /** [com.badlogic.gdx.ApplicationListener] implementation shared by all platforms. */
 class NewGame : Game() {
@@ -22,7 +21,9 @@ class NewGame : Game() {
     private val batch by lazy { SpriteBatch() }
     private val camera by lazy { OrthographicCamera() }
     private val viewport by lazy {
-        FitViewport(Gdx.app.graphics.width.toFloat(), Gdx.app.graphics.height.toFloat(), camera)
+        val view = ExtendViewport(640f, 480f, camera)
+        view.setScaling(Scaling.contain)
+        view
     }
 
     override fun create() {
@@ -40,10 +41,13 @@ class NewGame : Game() {
 
     override fun resize(width: Int, height: Int) {
         super.resize(width, height)
-        viewport.update(width, height)
+        viewport.update(width, height, true)
+        println("${viewport.worldWidth}, ${viewport.worldHeight}")
     }
 
     override fun render() {
+        viewport.apply()
+        batch.projectionMatrix = viewport.camera.combined
         batch.begin()
         super.render()
         batch.end()

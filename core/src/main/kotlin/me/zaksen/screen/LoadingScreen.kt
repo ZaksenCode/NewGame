@@ -1,7 +1,6 @@
 package me.zaksen.screen
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Screen
 import com.badlogic.gdx.ScreenAdapter
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.Color
