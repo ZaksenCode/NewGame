@@ -14,14 +14,6 @@ class LoadingScreen(
     private val assetManager: AssetManager,
     private val batch: SpriteBatch
 ): ScreenAdapter() {
-    override fun dispose() {
-
-    }
-
-    override fun show() {
-
-    }
-
     override fun render(delta: Float) {
         if(assetManager.update()) {
             game.screen = MenuScreen(game, assetManager, batch)
@@ -38,21 +30,5 @@ class LoadingScreen(
                 Gdx.app.graphics.height / 2f
             )
         }
-    }
-
-    override fun resize(p0: Int, p1: Int) {
-
-    }
-
-    override fun pause() {
-
-    }
-
-    override fun resume() {
-
-    }
-
-    override fun hide() {
-
     }
 }
