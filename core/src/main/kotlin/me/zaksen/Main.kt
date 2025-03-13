@@ -42,7 +42,6 @@ class NewGame : Game() {
     override fun resize(width: Int, height: Int) {
         super.resize(width, height)
         viewport.update(width, height, true)
-        println("${viewport.worldWidth}, ${viewport.worldHeight}")
     }
 
     override fun render() {

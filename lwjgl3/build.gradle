@@ -1,3 +1,4 @@
+import org.gradle.internal.os.OperatingSystem
 
 buildscript {
   repositories {
@@ -30,6 +31,13 @@ if (JavaVersion.current().isJava9Compatible()) {
 }
 kotlin.compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
 
+repositories {
+  mavenCentral()
+  maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
+  maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+  maven { url 'https://jitpack.io' }
+}
+
 dependencies {
   implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
   implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
@@ -38,8 +46,7 @@ dependencies {
 
   if(enableGraalNative == 'true') {
     implementation "io.github.berstanio:gdx-svmhelper-backend-lwjgl3:$graalHelperVersion"
-    }
-
+  }
 }
 
 def os = System.properties['os.name'].toLowerCase()
